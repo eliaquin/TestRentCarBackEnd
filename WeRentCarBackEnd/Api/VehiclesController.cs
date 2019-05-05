@@ -16,6 +16,8 @@ namespace WeRentCarBackEnd.Api
             _vehicleService = vehicleService;
         }
 
+        [HttpGet]
+        [Route("getallvehicles")]
         public IEnumerable<Vehicle> GetAllVehicles()
         {
             return _vehicleService.GetAll();
