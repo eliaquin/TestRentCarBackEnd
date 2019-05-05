@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WeRentCarBackEnd.Data;
+using WeRentCarBackEnd.Data.Infrastructure;
+using WeRentCarBackEnd.Services;
 
 namespace WeRentCarBackEnd
 {
@@ -23,6 +25,11 @@ namespace WeRentCarBackEnd
 
             services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IDbFactory, DbFactory>();
+            services.AddScoped<IClientService, ClientService>();
+            services.AddScoped<IVehicleService, VehicleService>();
+            services.AddScoped<IVehicleNoteService, VehicleNoteService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
