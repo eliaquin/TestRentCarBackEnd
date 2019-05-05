@@ -7,6 +7,8 @@ namespace WeRentCarBackEnd.Models
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public int TypeOfIdId { get; set; }
+        public TypeOfId TypeOfId { get; set; }
         public int IdentificationNumber { get; set; }
         public string PhoneNumber { get; set; }
         public IList<Vehicle> Vehicles { get; set; }
