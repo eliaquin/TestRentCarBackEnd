@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using WeRentCarBackEnd.Dtos;
 using WeRentCarBackEnd.Models;
 using WeRentCarBackEnd.Services;
+using WeRentCarBackEnd.ViewModels;
 
 namespace WeRentCarBackEnd.Api
 {
@@ -31,5 +33,13 @@ namespace WeRentCarBackEnd.Api
         {
             return _typeOfIdService.GetAll();
         }
+
+        [HttpPost]
+        [Route("saveclient")]
+        public ResponseInfo SaveClient([FromBody] ClientDto client)
+        {
+            return _clientService.SaveClient(client);
+        }
+
     }
 }

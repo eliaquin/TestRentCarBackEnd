@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,7 @@ namespace WeRentCarBackEnd
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
