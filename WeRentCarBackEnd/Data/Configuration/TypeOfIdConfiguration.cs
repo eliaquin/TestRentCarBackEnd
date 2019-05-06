@@ -17,12 +17,17 @@ namespace WeRentCarBackEnd.Data.Configuration
                 new TypeOfId
                 {
                     Id = 1,
-                    Name = "Identification Card"
+                    Name = "Driver's License"
                 },
                 new TypeOfId
                 {
                     Id = 2,
                     Name = "Passport"
+                },
+                new TypeOfId
+                {
+                    Id = 3,
+                    Name = "Other"
                 }
             });
         }
