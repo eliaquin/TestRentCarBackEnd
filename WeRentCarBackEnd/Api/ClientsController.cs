@@ -10,10 +10,12 @@ namespace WeRentCarBackEnd.Api
     public class ClientsController : ControllerBase
     {
         private readonly IClientService _clientService;
+        private readonly ITypeOfIdService _typeOfIdService;
 
-        public ClientsController(IClientService clientService)
+        public ClientsController(IClientService clientService, ITypeOfIdService typeOfIdService)
         {
             _clientService = clientService;
+            _typeOfIdService = typeOfIdService;
         }
 
         [HttpGet]
@@ -21,6 +23,13 @@ namespace WeRentCarBackEnd.Api
         public IEnumerable<Client> GetAllClients()
         {
             return _clientService.GetAll();
+        }
+
+        [HttpGet]
+        [Route("getalltypesofid")]
+        public IEnumerable<TypeOfId> GetAllTypesOfId()
+        {
+            return _typeOfIdService.GetAll();
         }
     }
 }
