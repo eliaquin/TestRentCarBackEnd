@@ -11,6 +11,7 @@ namespace WeRentCarBackEnd
             CreateMap<ClientDto, Client>()
                 .ForMember(x => x.IdentificationNumber, y => y.MapFrom(z => z.IdNumber))
                 .ReverseMap();
+            CreateMap<VehicleDto, Vehicle>().ReverseMap();
         }
     }
 }

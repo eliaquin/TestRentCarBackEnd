@@ -14,6 +14,8 @@ namespace WeRentCarBackEnd.Models
         public DateTime? LastRented { get; set; }
         public DateTime? LastReturned { get; set; }
         public decimal DailyPrice { get; set; }
+        public int NumberOfSeats { get; set; }
+        public int NumberOfDoors { get; set; }
         public IList<VehicleNote> Notes { get; set; }
     }
 }
