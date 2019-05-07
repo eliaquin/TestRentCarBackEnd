@@ -11,6 +11,7 @@ namespace WeRentCarBackEnd.Models
         public string Model { get; set; }
         public int Year { get; set; }
         public string Color { get; set; }
+        public string ImageName { get; set; }
         public DateTime? LastRented { get; set; }
         public DateTime? LastReturned { get; set; }
         public decimal DailyPrice { get; set; }

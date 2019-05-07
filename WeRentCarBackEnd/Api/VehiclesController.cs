@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using WeRentCarBackEnd.Dtos;
 using WeRentCarBackEnd.Models;
 using WeRentCarBackEnd.Services;
@@ -13,10 +15,12 @@ namespace WeRentCarBackEnd.Api
     public class VehiclesController : ControllerBase
     {
         private readonly IVehicleService _vehicleService;
+        private readonly IFileService _fileService;
 
-        public VehiclesController(IVehicleService vehicleService)
+        public VehiclesController(IVehicleService vehicleService, IFileService fileService)
         {
             _vehicleService = vehicleService;
+            _fileService = fileService;
         }
 
         [HttpGet]
@@ -43,18 +47,22 @@ namespace WeRentCarBackEnd.Api
 
             try
             {
-                var archivos = Request.Form.Files;
-                foreach (var file in archivos)
-                {
-                    Console.WriteLine("Lego");
-                }
+                var file = Request.Form.Files.FirstOrDefault();
+                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
+
+                var saveFileSuccessful = _fileService.SaveFile(file, fileName);
+                var linkImageSuccessful = _vehicleService.TieImageToVehicle(vehicleId, fileName);
+
+                var oInfo = new ResponseInfo();
+                oInfo.OperationSuccessful = saveFileSuccessful && linkImageSuccessful;
+                oInfo.Message = oInfo.OperationSuccessful ? "Archivo guardado exitosamente" : "Ocurrió un error al guardar el archivo";
+                return oInfo;
+
             }
             catch (Exception e)
             {
-                System.Console.Write(e);
+                return new ResponseInfo { OperationSuccessful = false, Message = e.Message };
             }
-            return new ResponseInfo { OperationSuccessful = true, Message = "Test", Payload = vehicleId };
-            throw new NotImplementedException();
         }
     }
 }

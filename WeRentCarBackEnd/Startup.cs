@@ -34,6 +34,7 @@ namespace WeRentCarBackEnd
             services.AddScoped<IVehicleService, VehicleService>();
             services.AddScoped<IVehicleNoteService, VehicleNoteService>();
             services.AddScoped<ITypeOfIdService, TypeOfIdService>();
+            services.AddScoped<IFileService, FileService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

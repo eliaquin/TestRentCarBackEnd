@@ -17,6 +17,8 @@ namespace WeRentCarBackEnd.Data.Configuration
             builder.Property(x => x.Model)
                 .HasMaxLength(50)
                 .IsRequired();
+            builder.Property(x => x.ImageName)
+                .HasMaxLength(512);
             builder.Property(x => x.DailyPrice)
                 .HasColumnType("decimal(18,2)")
                 .IsRequired();
