@@ -10,8 +10,8 @@ using WeRentCarBackEnd.Data;
 namespace WeRentCarBackEnd.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190505235417_TypeOfIdMigration")]
-    partial class TypeOfIdMigration
+    [Migration("20190507010212_TotalMigration")]
+    partial class TotalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,7 +31,8 @@ namespace WeRentCarBackEnd.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("IdentificationNumber")
+                    b.Property<string>("IdentificationNumber")
+                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<string>("LastName")
@@ -69,12 +70,17 @@ namespace WeRentCarBackEnd.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Identification Card"
+                            Name = "Driver's License"
                         },
                         new
                         {
                             Id = 2,
                             Name = "Passport"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Other"
                         });
                 });
 
@@ -88,7 +94,7 @@ namespace WeRentCarBackEnd.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("ClientId");
+                    b.Property<int?>("ClientId");
 
                     b.Property<string>("Color")
                         .IsRequired()
@@ -143,10 +149,9 @@ namespace WeRentCarBackEnd.Migrations
 
             modelBuilder.Entity("WeRentCarBackEnd.Models.Vehicle", b =>
                 {
-                    b.HasOne("WeRentCarBackEnd.Models.Client", "Client")
+                    b.HasOne("WeRentCarBackEnd.Models.Client")
                         .WithMany("Vehicles")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ClientId");
                 });
 
             modelBuilder.Entity("WeRentCarBackEnd.Models.VehicleNote", b =>
