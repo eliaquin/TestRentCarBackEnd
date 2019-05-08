@@ -1,7 +1,7 @@
 # TestRentCarBackEnd
 Rent-A-Car C# backend project.
 
-Note: this is the backend only. For the front end please visit https://github.com/eliaquin/TestRentCarFrontEnd
+<strong>Note: this is the backend only. For the front end please visit https://github.com/eliaquin/TestRentCarFrontEnd</strong>
 
 In order to make this application work, please follow this instructions:
 
