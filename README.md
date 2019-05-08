@@ -20,7 +20,8 @@ In order to make this application work, please follow this instructions:
     <li>Configuration folder (models configuration)</li>
     <li>Infrastructure (Repository configuration)</li>
 </ul>
-<p>Services</p>
+<p>Services: this is the only place where access to data occurs. All services are available to the application via dependency injection</p>
+<p>Api: this is auto explanatory</p>
 
 
     
