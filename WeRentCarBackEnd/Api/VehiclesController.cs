@@ -25,10 +25,31 @@ namespace WeRentCarBackEnd.Api
         }
 
         [HttpGet]
-        [Route("getallvehicles")]
+        [Route("getvehiclebyid/{id}")]
+        public Vehicle GetVehicle(int id)
+        {
+            return _vehicleService.GetById(id);
+        }
+
+        [HttpGet]
+        [Route("getall")]
         public IEnumerable<Vehicle> GetAllVehicles()
         {
-            return _vehicleService.GetAllVehicles();
+            return _vehicleService.GetAll();
+        }
+
+        [HttpGet]
+        [Route("getallvehiclesavailable")]
+        public IEnumerable<Vehicle> GetAllVehiclesAvailable()
+        {
+            return _vehicleService.GetAllVehiclesAvailable();
+        }
+
+        [HttpGet]
+        [Route("getallrentedvehicles")]
+        public IEnumerable<Vehicle> GetAllVehiclesRented()
+        {
+            return _vehicleService.GetAllRentedVehicles();
         }
 
         [HttpPost]
@@ -64,6 +85,13 @@ namespace WeRentCarBackEnd.Api
             {
                 return new ResponseInfo { OperationSuccessful = false, Message = e.Message };
             }
+        }
+
+        [HttpPost]
+        [Route("assignvehicletocustomer")]
+        public ResponseInfo AssignVehicleToCustomer([FromBody]VehicleCustomerIds vehicleCustomerIds)
+        {
+            return _vehicleService.AssignVehicleToCustomer(vehicleCustomerIds);
         }
     }
 }
