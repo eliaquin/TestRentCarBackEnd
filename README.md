@@ -13,7 +13,7 @@ In order to make this application work, please follow this instructions:
 
 # Project Structure
 
-Models folder where all models are kept.
+<p>Models folder where all models are kept.</p>
 Data folder. It contains the following:
 
     ApplicationDbContext (data access configuration)
