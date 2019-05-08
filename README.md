@@ -14,9 +14,12 @@ In order to make this application work, please follow this instructions:
 # Project Structure
 
 <p>Models folder where all models are kept.</p>
-Data folder. It contains the following:
+<p>Data folder. It contains the following:</p>
+<ul>
+    <li>ApplicationDbContext (data access configuration)</li>
+    <li>Configuration folder (models configuration)</li>
+    <li>Infrastructure (Repository configuration)</li>
+</ul>
 
-    ApplicationDbContext (data access configuration)
-    Configuration folder (models configuration)
-    Infrastructure (Repository configuration)
+    
     
