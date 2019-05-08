@@ -21,7 +21,7 @@ In order to make this application work, please follow this instructions:
     <li>Infrastructure (Repository configuration)</li>
 </ul>
 <p><strong>Services:</strong> this is the only place where access to data occurs. All services are available to the application via dependency injection</p>
-<p><strong>Api:</strong> this is auto explanatory</p>
+<p><strong>Api:</strong> this is self-explanatory</p>
 
 
     
