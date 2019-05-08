@@ -77,7 +77,7 @@ namespace WeRentCarBackEnd.Api
 
                 var oInfo = new ResponseInfo();
                 oInfo.OperationSuccessful = saveFileSuccessful && linkImageSuccessful;
-                oInfo.Message = oInfo.OperationSuccessful ? "Archivo guardado exitosamente" : "Ocurrió un error al guardar el archivo";
+                oInfo.Message = oInfo.OperationSuccessful ? "File saved successfully" : "There was an error saving the file";
                 return oInfo;
 
             }
