@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using WeRentCarBackEnd.Dtos;
 using WeRentCarBackEnd.Models;
 using WeRentCarBackEnd.Services;
@@ -27,7 +28,7 @@ namespace WeRentCarBackEnd.Api
         [Route("getallvehicles")]
         public IEnumerable<Vehicle> GetAllVehicles()
         {
-            return _vehicleService.GetAll();
+            return _vehicleService.GetAllVehicles();
         }
 
         [HttpPost]
@@ -40,7 +41,7 @@ namespace WeRentCarBackEnd.Api
         [HttpPost]
         [Route("addvehicleimage")]
         [Consumes("multipart/form-data")]
-        public ResponseInfo AddVehicleImage()
+        public async Task<ResponseInfo> AddVehicleImage()
         {
             if (!int.TryParse(Request.Headers["VehicleId"], out var vehicleId))
                 return new ResponseInfo { OperationSuccessful = false, Message = "Expected header not received" };
@@ -50,7 +51,7 @@ namespace WeRentCarBackEnd.Api
                 var file = Request.Form.Files.FirstOrDefault();
                 var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
 
-                var saveFileSuccessful = _fileService.SaveFile(file, fileName);
+                var saveFileSuccessful = await _fileService.SaveFile(file, fileName);
                 var linkImageSuccessful = _vehicleService.TieImageToVehicle(vehicleId, fileName);
 
                 var oInfo = new ResponseInfo();

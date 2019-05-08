@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using System;
+using System.Collections.Generic;
 using WeRentCarBackEnd.Data.Infrastructure;
 using WeRentCarBackEnd.Dtos;
 using WeRentCarBackEnd.Models;
@@ -10,6 +12,7 @@ namespace WeRentCarBackEnd.Services
     {
         ResponseInfo SaveVehicle(VehicleDto vehicle);
         bool TieImageToVehicle(int vehicleId, string imageName);
+        IEnumerable<Vehicle> GetAllVehicles();
     }
     public class VehicleService : Repository<Vehicle>, IVehicleService
     {
@@ -30,6 +33,7 @@ namespace WeRentCarBackEnd.Services
         public ResponseInfo SaveVehicle(VehicleDto vehicleDto)
         {
             var vehicle = _mapper.Map<Vehicle>(vehicleDto);
+            vehicle.DateOfCreation = DateTime.Now;
             Add(vehicle);
             var operationSuccessful = SaveChanges() > 0;
             return new ResponseInfo
@@ -38,6 +42,10 @@ namespace WeRentCarBackEnd.Services
                 Message = "Vehicle was successfully created",
                 Payload = vehicle.Id
             };
+        }
+        public IEnumerable<Vehicle> GetAllVehicles()
+        {
+            return GetMany(x => !string.IsNullOrEmpty(x.ImageName));
         }
     }
 }

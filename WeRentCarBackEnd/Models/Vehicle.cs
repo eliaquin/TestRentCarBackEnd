@@ -18,5 +18,6 @@ namespace WeRentCarBackEnd.Models
         public int NumberOfSeats { get; set; }
         public int NumberOfDoors { get; set; }
         public IList<VehicleNote> Notes { get; set; }
+        public DateTime DateOfCreation { get; set; } = DateTime.Now;
     }
 }
